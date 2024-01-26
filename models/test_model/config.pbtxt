@@ -1,0 +1,22 @@
+name: "test_model"
+backend: "python"
+max_batch_size: 1
+dynamic_batching{
+    preferred_batch_size: [1]
+    max_queue_delay_microseconds: 100
+}
+input [
+  {
+    name: "input_bytes"
+    data_type: TYPE_STRING
+    dims: [1]
+  }
+]
+output [
+  {
+    name: "output_bytes"
+    data_type: TYPE_STRING
+    dims: [-1]
+  }
+]
+instance_group [{ kind: KIND_CPU  }]

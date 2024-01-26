@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: > 
+        sh -c "tritonserver --model-repository /data/models --exit-timeout-secs 300"
+    volumes:
+      - ./models:/data/models
+    shm_size: '1gb'
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "8002:8002"
