@@ -12,7 +12,10 @@ LOGGER.addHandler(logging.StreamHandler(stream=sys.stdout))
 
 
 class TritonPythonModel:
-    def predict(self, request: pb_utils.InferenceRequest):
+    def initialize(self, args):
+        LOGGER.info("Initialized model")
+        LOGGER.info(sys.version)
+    def predict(self, request):
         tensor = pb_utils.get_input_tensor_by_name(request, "input_bytes")
         image_bytes = tensor.as_numpy()[0, 0]
 
@@ -35,7 +38,7 @@ class TritonPythonModel:
         output = pb_utils.Tensor("output_bytes", output)
         return pb_utils.InferenceResponse(output_tensors=[output])
 
-    def execute(self, requests: List[pb_utils.InferenceRequest]):
+    def execute(self, requests):
         LOGGER.info(f"Got N requests: {len(requests)}")
         responses = []
         for request in requests:

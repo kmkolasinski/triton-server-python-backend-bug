@@ -1,5 +1,7 @@
-# triton-server-python-backend-bug
+# triton-server-python-backend-bug [**SOLVED**]
 A snippet which demonstrates a potential bug in the triton server
+
+**SOLVED**: I was using old version of triton server. The issue is resolved in the latest version `nvcr.io/nvidia/tritonserver:23.12-py3`
 
 ## Build and Restart server
 
